@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My HTML Page</title>
+  <script>
+    const PI = 3.1415;
+const radius = 5;
+const minSpacePerPlant = 0.8;
+const initialPlantCount = 20;
+
+function calculateGardenArea(r) {
+  return PI * r * r;
+}
+
+function predictPlantGrowth(weeks) {
+  let plantCount = initialPlantCount * 2 ** weeks;
+  let gardenArea = calculateGardenArea(radius);
+
+  if (plantCount > 0.8 * (gardenArea / minSpacePerPlant)) {
+    console.log(`After ${weeks} weeks, the plant count is ${plantCount}. Prune the plants.`);
+  } else if (plantCount > 0.5 * (gardenArea / minSpacePerPlant)) {
+    console.log(`After ${weeks} weeks, the plant count is ${plantCount}. Monitor the growth.`);
+  } else {
+    console.log(`After ${weeks} weeks, the plant count is ${plantCount}. Plant more if there is room.`);
+  }
+}
+
+// Results for 1, 2, and 3 weeks of growth
+predictPlantGrowth(1);
+predictPlantGrowth(2);
+predictPlantGrowth(3);
+
+// Part 2: Thinking Bigger
+const initialPlantCountBigger = 100;
+const weeksBigger = 10;
+const expandedGardenArea = calculateGardenArea(radius) * 2 ** weeksBigger;
+
+console.log(`\nIf starting with ${initialPlantCountBigger} plants and not pruning for ${weeksBigger} weeks:`);
+console.log(`Additional space required: ${expandedGardenArea - calculateGardenArea(radius)} square meters`);
+console.log(`Radius of the expanded garden: ${Math.sqrt(expandedGardenArea / PI)} meters`);
+
+// Part 3: Errors in Judgement
+try {
+  const initialPlantCountError = 100;
+  const weeksError = 10;
+  const gardenAreaError = calculateGardenArea(radius);
+
+  if (initialPlantCountError * 2 ** weeksError > 0.8 * (gardenAreaError / minSpacePerPlant)) {
+    throw new Error("Error: The amount of space required exceeds the available space.");
+  }
+
+  console.log("\nNo error occurred. Continue with the plan.");
+} catch (error) {
+  console.error(error.message);
+}
+ja
+  
+  </script>
+</head>
+<body>
+  <h1>My HTML Page</h1>
+  <button onclick="showMessage()">Click me</button>
+</body>
+</html>
